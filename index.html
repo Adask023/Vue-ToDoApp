@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue warm up</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">app render</div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      template: `<div>
+        <p v-if="counter === 3">{{title}}</p>
+        <p v-else>{{counterMultiply}}</p>
+        <button @click="increaseCounter">+1</button>
+        <button @click="decreaseCounter">-1</button>
+        <ul>
+          <li v-for="user in users">{{user.name}}</li>
+        </ul>
+        </div>`,
+      data: {
+        title: 'Hello Vue',
+        counter: 0,
+        users: [{
+            name: 'Jon'
+          },
+          {
+            name: 'Sam'
+          },
+        ]
+      },
+      computed: {
+        counterMultiply() {
+          return this.counter * 2
+        }
+      },
+      watch: {
+        counter() {
+          alert(`counter was updated: ${this.counter}`)
+        }
+      },
+      methods: {
+        increaseCounter() {
+          this.counter++
+        },
+        decreaseCounter: function () {
+          this.counter--
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
